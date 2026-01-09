@@ -2,15 +2,39 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    Rigidbody2D rb;
+    int speed = 1;
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+
+
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+
+
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+
+
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+
+
+        }
+        else
+        {
+            speed = 0;
+        }
     }
 }
