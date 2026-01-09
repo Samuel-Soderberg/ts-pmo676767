@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
   productName: ts pmo676767
-  defaultCursor: {fileID: -8328923581568760697, guid: a4052902639805d4bb927abaf2d6f16b, type: 3}
+  defaultCursor: {fileID: 2800000, guid: d6d8da681675bb14782a55316c8c03da, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1
