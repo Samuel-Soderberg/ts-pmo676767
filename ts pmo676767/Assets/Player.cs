@@ -6,13 +6,14 @@ public class Player : MonoBehaviour
     [SerializeField]
     float speed;
     Vector2 dir;
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        dir = Vector2.zero;
+        dir = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        /* dir = Vector2.zero;
         if (Input.GetKey(KeyCode.UpArrow))
         {
             dir.y += 1;
@@ -29,7 +30,14 @@ public class Player : MonoBehaviour
         {
             dir.x += 1;
         }
-        Debug.Log(dir);
+        
+        rb.linearVelocity = dir.normalized * speed;
+        Debug.Log(dir.normalized);
+        */
+
+    }
+    private void FixedUpdate()
+    {
         rb.linearVelocity = dir * speed;
     }
 }
