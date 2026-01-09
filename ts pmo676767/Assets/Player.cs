@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
     [SerializeField]
-    int speed = 1;
+    float speed;
     Vector2 dir;
     void Start()
     {
@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         {
             dir.x += 1;
         }
+        Debug.Log(dir);
         rb.linearVelocity = dir * speed;
     }
 }
