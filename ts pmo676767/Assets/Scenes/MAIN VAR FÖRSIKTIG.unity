@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 975142169}
   - component: {fileID: 975142168}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: testing1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 977988781}
   - component: {fileID: 977988780}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,6 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a107a8bf8b379849b6865c825f48efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  speed: 1
 --- !u!212 &977988781
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -581,7 +582,7 @@ Transform:
   m_GameObject: {fileID: 977988779}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.13, y: -2.35, z: 0}
+  m_LocalPosition: {x: 0.32, y: -0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -777,7 +778,7 @@ GameObject:
   - component: {fileID: 2012773951}
   - component: {fileID: 2012773950}
   m_Layer: 0
-  m_Name: Square
+  m_Name: testing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -867,7 +868,7 @@ GameObject:
   - component: {fileID: 2080168241}
   - component: {fileID: 2080168242}
   m_Layer: 0
-  m_Name: Spot Light 2D
+  m_Name: player ambient light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
