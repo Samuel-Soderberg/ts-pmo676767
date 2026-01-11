@@ -14,6 +14,10 @@ public class RoomData : ScriptableObject
         int layout = y * width + x;
         return tiles[layout];
     }
+    public void SetTile(int x, int y, TileType tile)
+    {
+        tiles[y * width + x] = tile;
+    }
     public bool IsInsideRoom(int x, int y)
     {
         return x >= 0 && x < width && y >= 0 && y < height;

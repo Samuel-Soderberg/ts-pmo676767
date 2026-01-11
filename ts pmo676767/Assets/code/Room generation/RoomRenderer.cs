@@ -6,7 +6,7 @@ public class RoomRenderer : MonoBehaviour
 {
     public RoomData room;           
     public Tilemap floorTilemap;    
-    public Tilemap wallTilemap;     
+    public Tilemap wallTilemap;
     public TileTheme[] tileThemes;
     private Dictionary<(TileType, WallOrientation), TileBase> lookup;
 
