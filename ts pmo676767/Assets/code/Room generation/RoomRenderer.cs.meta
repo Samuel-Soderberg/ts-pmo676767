@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 761e30e3e77b8fd47a95ba27f1cb267f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - room: {fileID: 11400000, guid: 857890a794c25a04fbc610450c42012b, type: 2}
+  - floorTilemap: {instanceID: 0}
+  - wallTilemap: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
