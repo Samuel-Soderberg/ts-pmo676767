@@ -18,7 +18,6 @@ public class RoomRenderer : MonoBehaviour
             lookup[(theme.tileType, theme.orientation)] = theme.tile;
         }
     }
-
     public void DrawRoom()
     {
         //objects
