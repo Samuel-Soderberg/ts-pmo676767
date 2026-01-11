@@ -21,6 +21,14 @@ public class RoomRenderer : MonoBehaviour
 
     public void DrawRoom()
     {
+        //objects
+        foreach (var spawn in room.objectSpawns)
+        {
+            Vector3Int cell = new Vector3Int(spawn.tilePosition.x, spawn.tilePosition.y, 0);
+            Vector3 worldPos = floorTilemap.CellToWorld(cell);
+            Instantiate(spawn.marker.prefab,floorTilemap.CellToWorld(cell),Quaternion.identity);
+        }
+        //tiles
         for (int y = 0; y < room.height; y++)
         {
             for (int x = 0; x < room.width; x++)
@@ -28,14 +36,14 @@ public class RoomRenderer : MonoBehaviour
                 TileType tile = room.GetTile(x, y);
                 Vector3Int pos = new Vector3Int(x, y, 0);
 
-                if (tile.category == TileCategory.Floor)
-                {
-                    floorTilemap.SetTile(pos, lookup[(tile, WallOrientation.None)]);
-                }
+#pragma warning disable CS0642
+                if (tile.category == TileCategory.Empty) ;
+#pragma warning restore CS0642
+                else if (tile.category == TileCategory.Floor) floorTilemap.SetTile(pos, lookup[(tile, WallOrientation.None)]);
                 else
                 {
-                    WallOrientation o = room.GetWallOrientation(x, y);
-                    wallTilemap.SetTile(pos, lookup[(tile, o)]);
+                    WallOrientation orientation = room.GetWallOrientation(x, y);
+                    wallTilemap.SetTile(pos, lookup[(tile, orientation)]);
                 }
             }
         }

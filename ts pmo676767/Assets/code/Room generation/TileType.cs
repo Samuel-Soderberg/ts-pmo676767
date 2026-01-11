@@ -10,12 +10,13 @@ public enum WallOrientation
 public enum TileCategory
 {
     Floor,
-    Wall
+    Wall,
+    Empty
 }
 [CreateAssetMenu(menuName = "Tiles/Tile Type")]
 public class TileType : ScriptableObject
 {
     public TileCategory category;
     public string tileName;
-    public bool walkable;
+    //public bool walkable;
 }

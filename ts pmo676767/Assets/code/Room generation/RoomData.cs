@@ -1,11 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+public enum DoorDirection { North, South, East, West }
+
+[System.Serializable]
+public struct Door
+{
+    public DoorDirection direction;
+    public Vector2Int position;
+}
+[System.Serializable]
+public struct ObjectSpawn
+{
+    public RoomObject marker;
+    public Vector2Int tilePosition;
+}
+
 [CreateAssetMenu(menuName = "Rooms/Room Data")]
 public class RoomData : ScriptableObject
 {
+    
     public int width;
     public int height;
 
     public TileType[] tiles;
+    public List<Door> doors;
+
+    public List<ObjectSpawn> objectSpawns = new List<ObjectSpawn>();
 
     TileCategory? below;
     TileCategory? above;
