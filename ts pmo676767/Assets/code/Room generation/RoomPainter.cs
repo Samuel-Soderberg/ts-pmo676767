@@ -41,7 +41,10 @@ public class RoomPainter : MonoBehaviour
             } 
         }
         // tiles
-        RoomToPaint.doors.Clear();
+        if (RoomToPaint.doors != null)
+        {
+            RoomToPaint.doors.Clear();
+        }
         RoomToPaint.width = width;
         RoomToPaint.height = height;
         System.Array.Resize(ref RoomToPaint.tiles, (height * width));

@@ -4,7 +4,7 @@ using UnityEngine;
 public enum DoorDirection { North, South, East, West }
 
 [System.Serializable]
-public struct Door
+public class Door
 {
     public DoorDirection direction;
     public Vector2Int position;
