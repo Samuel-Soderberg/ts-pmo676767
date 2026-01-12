@@ -20,6 +20,7 @@ public class RoomPainter : MonoBehaviour
     public TileType floortile;
     public TileType walltile;
     public TileType emptytile;
+    public TileBase[] tiles;
 
     private DoorDirection direction;
 
@@ -90,5 +91,27 @@ public class RoomPainter : MonoBehaviour
         AssetDatabase.SaveAssets();
 #endif
         Debug.Log($"Room succesfully painted from Tilemap! With {objectcount} Gameobjects");
+    }
+    [ContextMenu("Render Selected Room Without Doors or objects")]
+    private void RenderSelectedRoom()
+    {
+        PaintedTilemap.ClearAllTiles();
+        for (int y = 0; y < RoomToPaint.height; y++)
+        {
+            for (int x = 0; x < RoomToPaint.width; x++)
+            {
+                TileType tile = RoomToPaint.GetTile(x, y);
+                Vector3Int pos = new Vector3Int(x, y, 0);
+
+#pragma warning disable CS0642
+                if (tile.category == TileCategory.Empty) ;
+#pragma warning restore CS0642
+                else if (tile.category == TileCategory.Floor) PaintedTilemap.SetTile(pos, tiles[0]);
+                else
+                {
+                    PaintedTilemap.SetTile(pos, tiles[1]);
+                }
+            }
+        }
     }
 }
