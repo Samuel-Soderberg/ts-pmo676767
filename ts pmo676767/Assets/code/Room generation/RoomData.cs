@@ -19,7 +19,7 @@ public struct ObjectSpawn
 [CreateAssetMenu(menuName = "Rooms/Room Data")]
 public class RoomData : ScriptableObject
 {
-    
+
     public int width;
     public int height;
 
@@ -55,7 +55,7 @@ public class RoomData : ScriptableObject
         if (IsInsideRoom(x, y + 1))
             above = GetTile(x, y + 1).category;
         if (IsInsideRoom(x, y - 1))
-           below = GetTile(x, y - 1).category;
+            below = GetTile(x, y - 1).category;
 
         if (below != null && below == TileCategory.Floor)
             return WallOrientation.Top;
