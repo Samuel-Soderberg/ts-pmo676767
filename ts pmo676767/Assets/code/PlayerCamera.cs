@@ -9,6 +9,7 @@ public class PlayerCamera : MonoBehaviour
     }
     void TryTakePhoto()
     {
+        CameraFlash.Cameraflash = true;
         foreach (Body body in BodyRegistry.allBodies)
         {
             if (body.photographed)
@@ -34,9 +35,10 @@ public class PlayerCamera : MonoBehaviour
             {
                 //Debug.Log("Sight = true");
                 if (Vector2.Distance(transform.position, bodypos) <= PlayerSettings.Instance.Camerarange)
-                    return true;
+                {
+                    return true; 
+                }
             }
-
             return false;
         }
         else
