@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1036149041901009252}
   - component: {fileID: 8636082556757380260}
   - component: {fileID: -6069492304697840019}
+  - component: {fileID: -6241197729900145297}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -55,6 +56,10 @@ MonoBehaviour:
   maxspeed: 10
   acceleration: 100
   deceleration: 100
+  Camerarange: 3
+  Cameraspread: 30
+  Flashspread: 30
+  Flashrange: 3
 --- !u!114 &5125629121476779405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,6 +215,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff106698c9fa21489c5c0a18f5098f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
+--- !u!114 &-6241197729900145297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78721009461269729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e68eab1ae8eec141b867c5fd9752413, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFlashlight
 --- !u!1 &588067150892711114
 GameObject:
   m_ObjectHideFlags: 0

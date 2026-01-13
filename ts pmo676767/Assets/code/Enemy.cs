@@ -3,14 +3,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    GameObject player;
-    bool haslineofsight = false;
-    Rigidbody2D rb;
+    private GameObject player;
+    private bool haslineofsight = false;
+    private Rigidbody2D rb;
+    public bool IsFlashed;
+    [SerializeField] private float Speed;
+    [SerializeField] private float FlashedSpeed;
     void Awake()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         Physics2D.queriesStartInColliders = false;
+        EnemyRegestry.allEnemys.Add(this);
     }
     private void FixedUpdate()
     {
@@ -23,7 +27,12 @@ public class Enemy : MonoBehaviour
                 if (haslineofsight)
                 {
                     Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
-                    rb.linearVelocity = (player.transform.position - transform.position).normalized * 3;
+                    if (IsFlashed)
+                    {
+                        rb.linearVelocity = (player.transform.position - transform.position).normalized * (Speed * FlashedSpeed);
+                    }
+                    else
+                        rb.linearVelocity = (player.transform.position - transform.position).normalized * Speed;
                 }
                 else
                 {

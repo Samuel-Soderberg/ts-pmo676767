@@ -15,15 +15,31 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Vector2 targetVelocity = direction * PlayerSettings.Instance.maxspeed;
-        if (direction.magnitude > 0)
+        if (PlayerSettings.Instance.Flashing)
         {
-            currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, PlayerSettings.Instance.acceleration * Time.fixedDeltaTime);
+            Vector2 flashtargetVelocity = direction * PlayerSettings.Instance.maxspeed * PlayerSettings.Instance.Flashingspeed;
+            if (direction.magnitude > 0)
+            {
+                currentVelocity = Vector2.MoveTowards(currentVelocity, flashtargetVelocity, PlayerSettings.Instance.acceleration * PlayerSettings.Instance.Flashingspeed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, PlayerSettings.Instance.deceleration * PlayerSettings.Instance.Flashingspeed  * Time.fixedDeltaTime);
+            }
+            rb.linearVelocity = currentVelocity;
         }
         else
         {
-            currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, PlayerSettings.Instance.deceleration * Time.fixedDeltaTime);
+            Vector2 targetVelocity = direction * PlayerSettings.Instance.maxspeed;
+            if (direction.magnitude > 0)
+            {
+                currentVelocity = Vector2.MoveTowards(currentVelocity, targetVelocity, PlayerSettings.Instance.acceleration * Time.fixedDeltaTime);
+            }
+            else
+            {
+                currentVelocity = Vector2.MoveTowards(currentVelocity, Vector2.zero, PlayerSettings.Instance.deceleration * Time.fixedDeltaTime);
+            }
+            rb.linearVelocity = currentVelocity;
         }
-        rb.linearVelocity = currentVelocity;
     }
 }

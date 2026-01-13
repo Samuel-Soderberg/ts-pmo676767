@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7009785993459853099}
   m_Layer: 0
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,7 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da46a7463785f614887ddb83c584e7ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 78721009461269729, guid: b5f88b9572215c746b29f5b03b6fc4c4, type: 3}
+  IsFlashed: 0
+  Speed: 3
+  FlashedSpeed: 0.1
 --- !u!50 &1423370691034140387
 Rigidbody2D:
   serializedVersion: 5
