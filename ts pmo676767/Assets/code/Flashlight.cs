@@ -3,7 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Flashlight : MonoBehaviour
 {
-    Light2D light;
+    new Light2D light;
     private void Update()
     {
         light = GetComponent<Light2D>();

@@ -5,7 +5,6 @@ using UnityEngine.Rendering.Universal;
 public class CameraFlash : MonoBehaviour
 {
     Light2D Lighting;
-    float timer = 0.1f;
     public static bool Cameraflash;
     private void Start()
     {
