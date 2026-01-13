@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bed8fe698c24045806cb391c1e05e9, type: 3}
   m_Name: Body
   m_EditorClassIdentifier: Assembly-CSharp::RoomObject
-  prefab: {fileID: 0}
+  prefab: {fileID: 6741715529037675316, guid: e403e83d92fe3624292e372cbb4f9d3f, type: 3}
   rotateWithRoom: 0

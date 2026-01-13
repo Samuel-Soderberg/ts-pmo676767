@@ -65,4 +65,28 @@ public class RoomData : ScriptableObject
             return WallOrientation.Side;
         return WallOrientation.Side;
     }
+    public WallOrientation GetWallOrientationRotated(RoomData room,int x,int y,int rotation)
+    {
+        if (room.GetTile(x, y).category != TileCategory.Wall)
+            return WallOrientation.None;
+
+        Vector2Int up = RoomMath.RotateDirection(Vector2Int.up, rotation);
+        Vector2Int down = RoomMath.RotateDirection(Vector2Int.down, rotation);
+
+        bool floorAbove =
+            room.IsInsideRoom(x + up.x, y + up.y) &&
+            room.GetTile(x + up.x, y + up.y).category == TileCategory.Floor;
+
+        bool floorBelow =
+            room.IsInsideRoom(x + down.x, y + down.y) &&
+            room.GetTile(x + down.x, y + down.y).category == TileCategory.Floor;
+
+        if (floorBelow)
+            return WallOrientation.Top;
+
+        if (floorAbove)
+            return WallOrientation.Bottom;
+
+        return WallOrientation.Side;
+    }
 }
