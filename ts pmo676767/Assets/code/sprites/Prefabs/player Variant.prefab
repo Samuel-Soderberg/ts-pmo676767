@@ -185,6 +185,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7317602709911805258}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 78721009461269729, guid: b5f88b9572215c746b29f5b03b6fc4c4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2855163309562739087}
     - targetCorrespondingSourceObject: {fileID: 588067150892711114, guid: b5f88b9572215c746b29f5b03b6fc4c4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2404976273273657170}
@@ -211,3 +214,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e3c24abc1b323e438e0233221fda7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!1 &7818784235184462959 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 78721009461269729, guid: b5f88b9572215c746b29f5b03b6fc4c4, type: 3}
+  m_PrefabInstance: {fileID: 7896580916109412494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2855163309562739087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818784235184462959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f3d28355ee713348bef6c8620527d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::death

@@ -15,27 +15,29 @@ MonoBehaviour:
   width: 5
   height: 4
   tiles:
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
   - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
-  - {fileID: 11400000, guid: 2c35c702687273845aba6a2a475b38c3, type: 2}
+  - {fileID: 11400000, guid: b7d6b112b44336f4fa77e107cc8b6d5c, type: 2}
   doors:
   - direction: 0
     position: {x: 2, y: 3}
-  objectSpawns: []
+  objectSpawns:
+  - marker: {fileID: 11400000, guid: f629562043287b645b2d439f503c265e, type: 2}
+    tilePosition: {x: 2, y: 2}

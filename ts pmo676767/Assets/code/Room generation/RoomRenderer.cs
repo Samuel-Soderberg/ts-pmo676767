@@ -29,22 +29,28 @@ public class RoomRenderer : MonoBehaviour
             roomGridPosition = Vector2Int.zero,
             rotation = 0
         };
-        DrawRoom(r);
+        //DrawRoom(r);
     }
 
     public void Closedoor(Doorsinworld door)
     {
-        if (door.Door.direction == DoorDirection.South || door.Door.direction == DoorDirection.North)
+        if (door.Door.direction == DoorDirection.South)
         {
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(1,0), lookup[(floor, WallOrientation.None)]); 
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y,0), lookup[(floor, WallOrientation.None)]); 
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(-1,0), lookup[(floor, WallOrientation.None)]); 
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(1,0), lookup[(floor, WallOrientation.Side)]); 
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y,0), lookup[(floor, WallOrientation.Side)]); 
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(-1,0), lookup[(floor, WallOrientation.Side)]); 
+        }
+        if (door.Door.direction == DoorDirection.North)
+        {
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(1, 0), lookup[(floor, WallOrientation.Top)]);
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0), lookup[(floor, WallOrientation.Top)]);
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(-1, 0), lookup[(floor, WallOrientation.Top)]);
         }
         if (door.Door.direction == DoorDirection.West || door.Door.direction == DoorDirection.East)
         {
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, 1), lookup[(floor, WallOrientation.None)]);
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0), lookup[(floor, WallOrientation.None)]);
-            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, -1), lookup[(floor, WallOrientation.None)]);
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, 1), lookup[(floor, WallOrientation.Side)]);
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0), lookup[(floor, WallOrientation.Side)]);
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, -1), lookup[(floor, WallOrientation.Side)]);
         }
     }
 
@@ -56,7 +62,6 @@ public class RoomRenderer : MonoBehaviour
 
         Vector2Int origin = roominst.roomGridPosition;
         List<Vector3Int> placedCells = new List<Vector3Int>();
-        Debug.Log("ok");
         for (int y = 0; y < roominst.room.height; y++)
         {
             for (int x = 0; x < roominst.room.width; x++)
@@ -92,32 +97,60 @@ public class RoomRenderer : MonoBehaviour
                     foreach (var posi in placedCells) { floorTilemap.SetTile(posi, null); }
                     foreach (var posi in placedCells) { wallTilemap.SetTile(posi, null); }
                     return false;
-                }   
-
-
-                if (tile.category == TileCategory.Floor)
-                {
-                    floorTilemap.SetTile(
-                        cell,
-                        lookup[(tile, WallOrientation.None)]
-                    );
-                    placedCells.Add(cell);
                 }
-                else if (tile.category == TileCategory.Wall)
-                {
-                    WallOrientation orientation =
-                        roominst.room.GetWallOrientationRotated(
-                            roominst.room,
-                            x,
-                            y,
-                            roominst.rotation
-                        );
 
-                    wallTilemap.SetTile(
-                        cell,
-                        lookup[(tile, orientation)]
-                    );
-                    placedCells.Add(cell);
+                TileBase tilehopemmpty = wallTilemap.GetTile(cell);
+                if (tilehopemmpty == floorTilemap.GetTile(cell))
+                {
+                    if (tile.category == TileCategory.Floor)
+                    {
+                        floorTilemap.SetTile(
+                            cell,
+                            lookup[(tile, WallOrientation.None)]
+                        );
+                        placedCells.Add(cell);
+                    }
+                    else if (tile.category == TileCategory.Wall)
+                    {
+                        WallOrientation orientation =
+                            roominst.room.GetWallOrientationRotated(
+                                roominst.room,
+                                x,
+                                y,
+                                roominst.rotation
+                            );
+
+                        wallTilemap.SetTile(
+                            cell,
+                            lookup[(tile, orientation)]
+                        );
+                        placedCells.Add(cell);
+                    }
+                }
+                else
+                {
+                    if (tile.category == TileCategory.Floor)
+                    {
+                        floorTilemap.SetTile(
+                            cell,
+                            lookup[(tile, WallOrientation.None)]
+                        );
+                    }
+                    else if (tile.category == TileCategory.Wall)
+                    {
+                        WallOrientation orientation =
+                            roominst.room.GetWallOrientationRotated(
+                                roominst.room,
+                                x,
+                                y,
+                                roominst.rotation
+                            );
+
+                        wallTilemap.SetTile(
+                            cell,
+                            lookup[(tile, orientation)]
+                        );
+                    }
                 }
             }
         }

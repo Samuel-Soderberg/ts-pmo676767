@@ -100,7 +100,7 @@ public class RoomPainter : MonoBehaviour
             {
                 TileType tile = RoomToPaint.GetTile(x, y);
                 Vector3Int pos = new Vector3Int(x, y, 0);
-
+                
 #pragma warning disable CS0642
                 if (tile.category == TileCategory.Empty) ;
 #pragma warning restore CS0642
