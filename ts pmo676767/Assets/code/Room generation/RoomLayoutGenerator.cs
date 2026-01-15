@@ -40,6 +40,20 @@ public class RoomLayoutGenerator : MonoBehaviour
     [ContextMenu("Generate layout")]
     public void Generate()
     {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy"); foreach (GameObject obj in targets) { Destroy(obj); }
+        GameObject[] target = GameObject.FindGameObjectsWithTag("Photographable"); foreach (GameObject obj in targets) { Destroy(obj); }
+
+
+        foreach (Enemy enemy in EnemyRegestry.allEnemys)
+        {
+            Destroy(enemy);
+        }
+        EnemyRegestry.allEnemys.Clear();
+        foreach (Body body in BodyRegistry.allBodies)
+        {
+            Destroy(body);
+        }
+
         originalRoomPool = new List<RoomData>(roomPool);
         
         placedroomcount = 0;
@@ -133,7 +147,7 @@ public class RoomLayoutGenerator : MonoBehaviour
             if (succes == false)
                 roomRenderer.Closedoor(currentdoor);
         }
-        if (placedroomcount !>= 15)
+        if (placedroomcount < 15)
         {
             Restart();
             return;
@@ -143,12 +157,23 @@ public class RoomLayoutGenerator : MonoBehaviour
         {
             roomRenderer.Closedoor(door);
         }
+        Debug.Log(doorsopen.Count);
     }
             
           
 
     private void Restart()
     {
+        foreach (Enemy enemy in EnemyRegestry.allEnemys)
+        {
+            Destroy(enemy);
+        }
+        EnemyRegestry.allEnemys.Clear();
+        foreach (Body body in BodyRegistry.allBodies)
+        {
+            Destroy(body);
+        }
+        BodyRegistry.allBodies.Clear();
         if (roomRenderer.floorTilemap != null)
             roomRenderer.floorTilemap.ClearAllTiles();
         if (roomRenderer.wallTilemap != null)
