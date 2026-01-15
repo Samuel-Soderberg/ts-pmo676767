@@ -9,6 +9,7 @@ public class timer : MonoBehaviour
     public GameObject goal;
     public string sceen;
     public GameObject button;
+    public GameObject vitrory;
 
 
 
@@ -26,7 +27,7 @@ public class timer : MonoBehaviour
             Time.timeScale = 0f;
             print(timmer);
             button.gameObject.SetActive(true);
-
+            vitrory.SetActive(true);
         }
     }
 
