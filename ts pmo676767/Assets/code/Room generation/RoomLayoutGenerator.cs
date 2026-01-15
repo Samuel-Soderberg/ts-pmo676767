@@ -89,9 +89,9 @@ public class RoomLayoutGenerator : MonoBehaviour
                 {
                     if (DoorUtils.Rotate(currentdoor.Door.direction, 180) == DoorUtils.Rotate(currentotherdoor.direction, rot))
                     {
-                        Debug.Log(DoorUtils.Rotate(currentdoor.Door.direction, 0));
-                        Debug.Log(DoorUtils.Rotate(currentotherdoor.direction, rot));
-                        Debug.Log(rot);
+                        //Debug.Log(DoorUtils.Rotate(currentdoor.Door.direction, 0));
+                        //Debug.Log(DoorUtils.Rotate(currentotherdoor.direction, rot));
+                        //Debug.Log(rot);
 
                         currentotherdoorrotpos = RoomMath.RotateTile(
                         currentotherdoor.position,
@@ -122,8 +122,8 @@ public class RoomLayoutGenerator : MonoBehaviour
                                     rot
                                     );
                                     Door converteddoor = new Door { direction = waitforregdoordir, position = (currentdoor.doorpos - currentotherdoorrotpos) + waitforregdoorpos };
-                                    Debug.Log(converteddoor.direction);
-                                    Debug.Log(converteddoor.position);
+                                    //Debug.Log(converteddoor.direction);
+                                    //Debug.Log(converteddoor.position);
                                     doorsopen.Add(new Doorsinworld { Door = converteddoor, doorpos = converteddoor.position });
                                 }
                             }
@@ -142,12 +142,12 @@ public class RoomLayoutGenerator : MonoBehaviour
                 if (succes == true)
                     break;
             }
-            Debug.Log(succes);
+            //Debug.Log(succes);
             safety++;
             if (succes == false)
                 roomRenderer.Closedoor(currentdoor);
         }
-        if (placedroomcount < 15)
+        if (placedroomcount < maxRooms)
         {
             Restart();
             return;

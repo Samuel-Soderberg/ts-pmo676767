@@ -3,9 +3,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerCamera : MonoBehaviour
 {
+    float timer = 1;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) TryTakePhoto();
+        timer -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Space)&&timer <=0) 
+        {
+            Invoke("TryTakePhoto", 0.3f);
+            PlayerMovement.ChangeAnimationState("camera");
+            timer = 1;
+        }
     }
     void TryTakePhoto()
     {
@@ -17,7 +24,6 @@ public class PlayerCamera : MonoBehaviour
             else if (IsInCameraCone(body.transform.position))
             {
                 body.photographed = true;
-                Debug.Log("Photographed: " + body.name);
             }
         }
     }
