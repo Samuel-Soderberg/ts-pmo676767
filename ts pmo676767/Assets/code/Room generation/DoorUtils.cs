@@ -20,10 +20,10 @@ public static class DoorUtils
         {
             dir = dir switch
             {
-                DoorDirection.North => DoorDirection.East,
-                DoorDirection.East => DoorDirection.South,
-                DoorDirection.South => DoorDirection.West,
-                DoorDirection.West => DoorDirection.North,
+                DoorDirection.North => DoorDirection.West,
+                DoorDirection.West => DoorDirection.South,
+                DoorDirection.South => DoorDirection.East,
+                DoorDirection.East => DoorDirection.North,
                 _ => dir
             };
         }

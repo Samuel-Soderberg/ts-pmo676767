@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.UI.Image;
 
 public class RoomRenderer : MonoBehaviour
@@ -27,7 +28,7 @@ public class RoomRenderer : MonoBehaviour
         {
             room = startroom,
             roomGridPosition = Vector2Int.zero,
-            rotation = 0
+            rotation = 180
         };
         //DrawRoom(r);
     }
@@ -55,13 +56,17 @@ public class RoomRenderer : MonoBehaviour
     }
 
 
-
+    public class tiletoplace
+    {
+        public WallOrientation ori = 0;
+        public TileType tile;
+        public Vector3Int pos;
+    }
     public bool DrawRoom(RoomInstance roominst)
     {
-       
-
+        List<tiletoplace> tilestoplace = new List<tiletoplace>();
         Vector2Int origin = roominst.roomGridPosition;
-        List<Vector3Int> placedCells = new List<Vector3Int>();
+
         for (int y = 0; y < roominst.room.height; y++)
         {
             for (int x = 0; x < roominst.room.width; x++)
@@ -85,30 +90,31 @@ public class RoomRenderer : MonoBehaviour
                 );
 
                 TileBase floorTile = floorTilemap.GetTile(cell);
-                if (floorTile != null && floorTile.name.Contains(tile.category.ToString()))
+                if (floorTile != null && !floorTile.name.Contains(tile.category.ToString()))
                 {
-                    foreach (var posi in placedCells) { floorTilemap.SetTile(posi, null); }
-                    foreach (var posi in placedCells) { wallTilemap.SetTile(posi, null); }
+                    Debug.Log(tile.category);
+                    Debug.Log(floorTile);
+                    Debug.Log("FLOOR");
                     return false;
                 }
                 TileBase wallTile = wallTilemap.GetTile(cell);
-                if (wallTile != null && wallTile.name.Contains(tile.category.ToString()))
+                if (wallTile != null && !wallTile.name.Contains(tile.category.ToString()))
                 {
-                    foreach (var posi in placedCells) { floorTilemap.SetTile(posi, null); }
-                    foreach (var posi in placedCells) { wallTilemap.SetTile(posi, null); }
+                    Debug.Log(tile.category);
+                    Debug.Log(wallTile);
+                    Debug.Log("WALL");
                     return false;
                 }
+                    
 
-                TileBase tilehopemmpty = wallTilemap.GetTile(cell);
-                if (tilehopemmpty == floorTilemap.GetTile(cell))
-                {
                     if (tile.category == TileCategory.Floor)
                     {
-                        floorTilemap.SetTile(
-                            cell,
-                            lookup[(tile, WallOrientation.None)]
-                        );
-                        placedCells.Add(cell);
+                    tilestoplace.Add(new tiletoplace 
+                    { 
+                        ori = WallOrientation.None,
+                        pos = cell,
+                        tile = tile
+                    });
                     }
                     else if (tile.category == TileCategory.Wall)
                     {
@@ -119,40 +125,21 @@ public class RoomRenderer : MonoBehaviour
                                 y,
                                 roominst.rotation
                             );
-
-                        wallTilemap.SetTile(
-                            cell,
-                            lookup[(tile, orientation)]
-                        );
-                        placedCells.Add(cell);
-                    }
-                }
-                else
-                {
-                    if (tile.category == TileCategory.Floor)
+                    tilestoplace.Add(new tiletoplace
                     {
-                        floorTilemap.SetTile(
-                            cell,
-                            lookup[(tile, WallOrientation.None)]
-                        );
+                        ori = orientation,
+                        pos = cell,
+                        tile = tile
+                    });
                     }
-                    else if (tile.category == TileCategory.Wall)
-                    {
-                        WallOrientation orientation =
-                            roominst.room.GetWallOrientationRotated(
-                                roominst.room,
-                                x,
-                                y,
-                                roominst.rotation
-                            );
-
-                        wallTilemap.SetTile(
-                            cell,
-                            lookup[(tile, orientation)]
-                        );
-                    }
-                }
             }
+        }
+        foreach (tiletoplace tile in tilestoplace)
+        {
+            if (tile.tile == floor)
+            wallTilemap.SetTile(tile.pos, lookup[(tile.tile, tile.ori)]);
+            else
+                floorTilemap.SetTile(tile.pos, lookup[(tile.tile, tile.ori)]);
         }
         // ---------- OBJECTS ----------
         foreach (var spawn in roominst.room.objectSpawns)

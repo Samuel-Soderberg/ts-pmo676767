@@ -33,7 +33,6 @@ public class PlayerFlashlight : MonoBehaviour
             if (IsInFlashCone(enemy.transform.position))
             {
                 enemy.IsFlashed = true;
-                Debug.Log("flashed: " + enemy.name);
             }
             else
                 enemy.IsFlashed = false;

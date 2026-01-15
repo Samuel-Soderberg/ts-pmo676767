@@ -38,6 +38,4 @@ MonoBehaviour:
   doors:
   - direction: 0
     position: {x: 2, y: 3}
-  objectSpawns:
-  - marker: {fileID: 11400000, guid: f629562043287b645b2d439f503c265e, type: 2}
-    tilePosition: {x: 2, y: 2}
+  objectSpawns: []

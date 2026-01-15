@@ -32,14 +32,19 @@ public class RoomLayoutGenerator : MonoBehaviour
 
     private int placedroomcount = 0;
     private int safety = 0;
+    private List<RoomData> originalRoomPool;
     private void Start()
     {
         Generate();
     }
+    [ContextMenu("Generate layout")]
     public void Generate()
     {
+        originalRoomPool = new List<RoomData>(roomPool);
+        
+        placedroomcount = 0;
+        safety = 0;
         doorsopen = new List<Doorsinworld>();
-        Vector2Int calculatedpos = new Vector2Int(0, 0);
         Vector2Int currentotherdoorrotpos = new Vector2Int(0, 0);
 
         bool succes = false;
@@ -51,95 +56,102 @@ public class RoomLayoutGenerator : MonoBehaviour
         };
         roomRenderer.DrawRoom(starroom);
         doorsopen.Add(new Doorsinworld { Door = starroom.room.doors[0], doorpos = starroom.room.doors[0].position });
-        //while (placedroomcount < maxRooms && safety <= 100)
-        //{
-        Doorsinworld currentdoor = doorsopen[UnityEngine.Random.Range(0, doorsopen.Count)];
-        List<RoomData> shuffled = new List<RoomData>(roomPool);
-        shuffled.Shuffle();
-
-        //foreach (var room in shuffled)
-        //{
-        Door currentotherdoor = startRoom.doors[Random.Range(0, startRoom.doors.Count)];
-        for (int rot = 0; rot < 360; rot += 90)
+        while (placedroomcount < maxRooms && safety < 100000)
         {
-            if (DoorUtils.Rotate(currentdoor.Door.direction, 180) == DoorUtils.Rotate(currentotherdoor.direction, rot))
+            if (doorsopen.Count == 0)
             {
-                currentotherdoorrotpos = RoomMath.RotateTile(
-                currentotherdoor.position,
-                startRoom.width,
-                startRoom.height,
-                rot
-                );
-                DoorDirection currentotherdoordir = DoorUtils.Rotate(currentotherdoor.direction, rot);
-
-                if (rot == 0 || rot == 180)
-                {
-                    Vector2Int roomdim = new Vector2Int(startRoom.width, startRoom.height);
-                    calculatedpos = currentotherdoorrotpos - roomdim;
-                }
-                if (rot == 90 || rot == 270)
-                {
-                    Vector2Int roomdim = new Vector2Int(startRoom.height, startRoom.width);
-                    calculatedpos = currentotherdoorrotpos - roomdim;
-                }
-                Debug.Log(calculatedpos);
-
-                RoomInstance roomtodraw = new RoomInstance
-                {
-                    room = startRoom,
-                    roomGridPosition = calculatedpos,
-                    rotation = rot
-                };
-                Debug.Log(roomRenderer.DrawRoom(roomtodraw));
-                /* if (roomRenderer.DrawRoom(roomtodraw))
-                 {
-                     placedroomcount++;
-                     foreach (var door in startRoom.doors)
-                     {
-                         DoorDirection waitforregdoordir = DoorUtils.Rotate(door.direction, rot);
-                         Vector2Int waitforregdoorpos = RoomMath.RotateTile(
-                         door.position,
-                         room.width,
-                         room.height,
-                         rot
-                         );
-
-                         if (rot == 0 || rot == 180)
-                         {
-                             Vector2Int roomdim = new Vector2Int(room.width, room.height);
-                             calculatedpos = waitforregdoorpos - roomdim;
-                         }
-                         if (rot == 90 || rot == 270)
-                         {
-                             Vector2Int roomdim = new Vector2Int(room.height, room.width);
-                             calculatedpos = waitforregdoorpos - roomdim;
-                         }
-                         Door converteddoor = new Door { direction = waitforregdoordir, position = door.position };
-                         doorsopen.Add(new Doorsinworld {Door = converteddoor, doorpos = calculatedpos });
-                     }
-                succes = true;
-                        break;
-                    }
-                    else
-                    {
-                        succes = false;
-                        break;
-                    }
-                }
+                    Restart();
+                    return;
             }
-            if (succes == true)
-                break; */
-                //}
-                //safety++;
-                //if (succes == false)
-                //roomRenderer.Closedoor(currentdoor);
-                //}
-            } 
-        } 
-    } 
+            
+            Doorsinworld currentdoor = doorsopen[UnityEngine.Random.Range(0, doorsopen.Count)];
+            List<RoomData> shuffled = new List<RoomData>(roomPool);
+            shuffled.Shuffle();
+
+            foreach (var room in shuffled)
+            {
+                Door currentotherdoor = room.doors[Random.Range(0, room.doors.Count)];
+                for (int rot = 0; rot < 360; rot += 90)
+                {
+                    if (DoorUtils.Rotate(currentdoor.Door.direction, 180) == DoorUtils.Rotate(currentotherdoor.direction, rot))
+                    {
+                        Debug.Log(DoorUtils.Rotate(currentdoor.Door.direction, 0));
+                        Debug.Log(DoorUtils.Rotate(currentotherdoor.direction, rot));
+                        Debug.Log(rot);
+
+                        currentotherdoorrotpos = RoomMath.RotateTile(
+                        currentotherdoor.position,
+                        room.width,
+                        room.height,
+                        rot
+                        );
+                        DoorDirection currentotherdoordir = DoorUtils.Rotate(currentotherdoor.direction, rot);
+
+                        RoomInstance roomtodraw = new RoomInstance
+                        {
+                            room = room,
+                            roomGridPosition = (currentdoor.doorpos - currentotherdoorrotpos) + new Vector2Int(0, 0),
+                            rotation = rot
+                        };
+                        if (roomRenderer.DrawRoom(roomtodraw))
+                        {
+                            placedroomcount++;
+                            foreach (var door in room.doors)
+                            {
+                                if (door != currentotherdoor)
+                                {
+                                    DoorDirection waitforregdoordir = (DoorUtils.Rotate(door.direction, rot));
+                                    Vector2Int waitforregdoorpos = RoomMath.RotateTile(
+                                    door.position,
+                                    room.width,
+                                    room.height,
+                                    rot
+                                    );
+                                    Door converteddoor = new Door { direction = waitforregdoordir, position = (currentdoor.doorpos - currentotherdoorrotpos) + waitforregdoorpos };
+                                    Debug.Log(converteddoor.direction);
+                                    Debug.Log(converteddoor.position);
+                                    doorsopen.Add(new Doorsinworld { Door = converteddoor, doorpos = converteddoor.position });
+                                }
+                            }
+                            doorsopen.Remove(currentdoor);
+                            roomPool.Remove(room);
+                            succes = true;
+                            break;
+                        }
+                        else
+                        {
+                            succes = false;
+                            break;
+                        }
+                    }
+                }
+                if (succes == true)
+                    break;
+            }
+            Debug.Log(succes);
+            safety++;
+            if (succes == false)
+                roomRenderer.Closedoor(currentdoor);
+        }
+        Debug.Log(placedroomcount);
+        foreach (Doorsinworld door in doorsopen) 
+        {
+            roomRenderer.Closedoor(door);
+        }
+    }
+            
+          
 
     private void Restart()
     {
-        
+        if (roomRenderer.floorTilemap != null)
+            roomRenderer.floorTilemap.ClearAllTiles();
+        if (roomRenderer.wallTilemap != null)
+            roomRenderer.wallTilemap.ClearAllTiles();
+
+            roomPool = new List<RoomData>(originalRoomPool);
+
+
+        Generate();
     }
 }
