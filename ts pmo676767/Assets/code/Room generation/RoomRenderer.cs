@@ -49,6 +49,7 @@ public class RoomRenderer : MonoBehaviour
         }
         if (door.Door.direction == DoorDirection.West || door.Door.direction == DoorDirection.East)
         {
+            wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, 2), lookup[(floor, WallOrientation.Side)]);
             wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, 1), lookup[(floor, WallOrientation.Side)]);
             wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0), lookup[(floor, WallOrientation.Side)]);
             wallTilemap.SetTile(new Vector3Int(door.doorpos.x, door.doorpos.y, 0) + new Vector3Int(0, -1), lookup[(floor, WallOrientation.Side)]);

@@ -152,12 +152,11 @@ public class RoomLayoutGenerator : MonoBehaviour
             Restart();
             return;
         }
-        Debug.Log(placedroomcount);
         foreach (Doorsinworld door in doorsopen) 
         {
             roomRenderer.Closedoor(door);
         }
-        Debug.Log(doorsopen.Count);
+        Invoke("cleanup", 0.01f);
     }
             
           
@@ -183,5 +182,22 @@ public class RoomLayoutGenerator : MonoBehaviour
 
 
         Generate();
+    }
+    public void cleanup()
+    {
+        GameObject[] target = GameObject.FindGameObjectsWithTag("Photographable");
+        List<GameObject> inlist = new List<GameObject>();
+        foreach (Body b in BodyRegistry.allBodies)
+        {
+            inlist.Add(b.gameObject);
+        }
+        foreach (GameObject obj in target)
+        {
+                if (!inlist.Contains(obj))
+                {
+                    Destroy(obj);
+                }
+        }
+        
     }
 }
