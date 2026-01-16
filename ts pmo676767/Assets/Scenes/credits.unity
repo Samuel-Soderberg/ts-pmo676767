@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "SAMUEL l S\xF6derberg\nELVIN Masus\nNILS Hallonst\xE9n\nCHARLIE Larsson\nVILMA
+  m_text: "SAMUEL S\xF6derberg\nELVIN Masus\nNILS Hallonst\xE9n\nCHARLIE Larsson\nVILMA
     Paoli Hylin\nMANNE Andersson Blomberg\nADAM Pierrou\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
