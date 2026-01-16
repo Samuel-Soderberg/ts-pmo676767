@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.UI.Image;
 
 public class RoomRenderer : MonoBehaviour
 {

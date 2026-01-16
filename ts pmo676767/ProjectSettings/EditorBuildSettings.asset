@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Recovery/0 (1).unity
     guid: b6a33b697ac5bce4b89b5599f27f433d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/game over.unity
     guid: 464187c178a0a80438688cc26c57799c
   - enabled: 1
