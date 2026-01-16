@@ -6,6 +6,8 @@ public class PlayerCamera : MonoBehaviour
 {
     float timer = 1;
     LayerMask mask;
+    public AudioSource audioSource;
+
     private void Awake()
     {
         mask = LayerMask.GetMask("body", "wall");
@@ -22,6 +24,7 @@ public class PlayerCamera : MonoBehaviour
     }
     void TryTakePhoto()
     {
+        audioSource.Play();
         //Debug.Log("body");
         CameraFlash.Cameraflash = true;
         foreach (Body body in BodyRegistry.allBodies)

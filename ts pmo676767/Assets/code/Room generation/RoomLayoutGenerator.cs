@@ -33,6 +33,10 @@ public class RoomLayoutGenerator : MonoBehaviour
     private int placedroomcount = 0;
     private int safety = 0;
     private List<RoomData> originalRoomPool;
+    private void Awake()
+    {
+        BodyRegistry.allBodies.Clear();
+    }
     private void Start()
     {
         Generate();
@@ -42,7 +46,6 @@ public class RoomLayoutGenerator : MonoBehaviour
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Enemy"); foreach (GameObject obj in targets) { Destroy(obj); }
         GameObject[] target = GameObject.FindGameObjectsWithTag("Photographable"); foreach (GameObject obj in targets) { Destroy(obj); }
-
 
         foreach (Enemy enemy in EnemyRegestry.allEnemys)
         {
@@ -156,7 +159,7 @@ public class RoomLayoutGenerator : MonoBehaviour
         {
             roomRenderer.Closedoor(door);
         }
-        Invoke("cleanup", 0.01f);
+        cleanup();
     }
             
           
@@ -185,6 +188,7 @@ public class RoomLayoutGenerator : MonoBehaviour
     }
     public void cleanup()
     {
+        Time.timeScale = 1f;
         GameObject[] target = GameObject.FindGameObjectsWithTag("Photographable");
         List<GameObject> inlist = new List<GameObject>();
         foreach (Body b in BodyRegistry.allBodies)
@@ -195,7 +199,8 @@ public class RoomLayoutGenerator : MonoBehaviour
         {
                 if (!inlist.Contains(obj))
                 {
-                    Destroy(obj);
+                    if (obj != null)
+                        Destroy(obj);
                 }
         }
         

@@ -21,6 +21,8 @@ public class timer : MonoBehaviour
     int bodiesfound = 0;
     [SerializeField]
     GameObject image;
+    [SerializeField]
+    GameObject buttonrestart;
 
     Collider2D col;
     Collider2D enemycol;
@@ -29,6 +31,7 @@ public class timer : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         image.SetActive(false);
+        buttonrestart.SetActive(false);
         bodytext.enabled = true;
         gaoltext.enabled = false;
         timertext.enabled = true;
@@ -69,7 +72,8 @@ public class timer : MonoBehaviour
         timertext.enabled = false;
         image.SetActive(true);
         gaoltext.enabled = true;
-        gaoltext.text = "Victory";
+        gaoltext.text = $"Victory in {(int)timmer}!";
+        buttonrestart.SetActive(true);
     }
     void death()
     {
@@ -79,5 +83,6 @@ public class timer : MonoBehaviour
         image.SetActive(true);
         gaoltext.enabled = true;
         gaoltext.text = "Defeat";
+        buttonrestart.SetActive(true);
     }
 }

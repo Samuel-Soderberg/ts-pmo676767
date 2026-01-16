@@ -110,6 +110,12 @@ MonoBehaviour:
   - {fileID: -1223803549164646338, guid: 856bb5899dcf8444080b5413c7528e4d, type: 3}
   - {fileID: 7253484672576316854, guid: 368dffd7b1857694da84ceac174ce043, type: 3}
   - {fileID: -7633828165677060524, guid: 0071c1feb7a4f0c4f9040cece8dc1b19, type: 3}
+  - {fileID: 2147682440251368245, guid: 9644dc4f93f77eb4f9296bcc80a97689, type: 3}
+  - {fileID: -4736341099933490317, guid: e8e6d5c7154b1c04d84bd79631649ab5, type: 3}
+  - {fileID: -4685355007810579695, guid: 9934c389a48db0241ac122991ca300d7, type: 3}
+  - {fileID: 8803931685538367055, guid: 8b15d248283dc604497b17e9cedcb043, type: 3}
+  - {fileID: -5087662999634942176, guid: 2fec8813cfe96b4468fe9058dceee364, type: 3}
+  - {fileID: 1374979621306501092, guid: 0b2cee1169f8ff14e8bb82802ad2af3b, type: 3}
 --- !u!50 &259343615995334745
 Rigidbody2D:
   serializedVersion: 5
@@ -174,7 +180,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.875, y: 1}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
