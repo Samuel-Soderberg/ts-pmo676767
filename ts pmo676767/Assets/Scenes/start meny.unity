@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26278f45e729f8f479eb6f5beb4c6cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::start
-  scenn: "MAIN VAR F\xD6RSIKTIG"
+  scenn: 0 (1)
 --- !u!114 &439029861
 MonoBehaviour:
   m_ObjectHideFlags: 0

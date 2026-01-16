@@ -1,9 +1,15 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
     float timer = 1;
+    LayerMask mask;
+    private void Awake()
+    {
+        mask = LayerMask.GetMask("body", "wall");
+    }
     private void Update()
     {
         timer -= Time.deltaTime;
@@ -16,6 +22,7 @@ public class PlayerCamera : MonoBehaviour
     }
     void TryTakePhoto()
     {
+        //Debug.Log("body");
         CameraFlash.Cameraflash = true;
         foreach (Body body in BodyRegistry.allBodies)
         {
@@ -23,6 +30,7 @@ public class PlayerCamera : MonoBehaviour
                 continue;
             else if (IsInCameraCone(body.transform.position))
             {
+                //Debug.Log("body photo");
                 body.photographed = true;
             }
         }
@@ -35,7 +43,7 @@ public class PlayerCamera : MonoBehaviour
         //Debug.Log(Vector2.Angle(toTarget, tomouse));
         if (Vector2.Angle(toTarget, tomouse) <= PlayerSettings.Instance.Cameraspread)
         {
-            RaycastHit2D ray = Physics2D.Raycast(transform.position, bodypos - new Vector2(transform.position.x, transform.position.y));
+            RaycastHit2D ray = Physics2D.Raycast(transform.position, bodypos - new Vector2(transform.position.x, transform.position.y),Mathf.Infinity, mask);
             //Debug.Log("Spread = true");
             if (ray.collider.CompareTag("Photographable"))
             {

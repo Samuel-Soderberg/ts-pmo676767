@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5868163986707904204}
   - component: {fileID: 82549575173994465}
   - component: {fileID: 259343615995334745}
-  - component: {fileID: 5769871361119269305}
-  m_Layer: 0
+  - component: {fileID: 3653761697480842281}
+  m_Layer: 7
   m_Name: Body
   m_TagString: Photographable
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6741715529037675316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.94429, y: 2.29885, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -106,6 +106,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Body
   photographed: 0
+  possibleSprites:
+  - {fileID: -1223803549164646338, guid: 856bb5899dcf8444080b5413c7528e4d, type: 3}
+  - {fileID: 7253484672576316854, guid: 368dffd7b1857694da84ceac174ce043, type: 3}
+  - {fileID: -7633828165677060524, guid: 0071c1feb7a4f0c4f9040cece8dc1b19, type: 3}
 --- !u!50 &259343615995334745
 Rigidbody2D:
   serializedVersion: 5
@@ -125,7 +129,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -133,7 +137,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &5769871361119269305
+--- !u!61 &3653761697480842281
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +171,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -177,5 +181,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.875, y: 1}
   m_EdgeRadius: 0

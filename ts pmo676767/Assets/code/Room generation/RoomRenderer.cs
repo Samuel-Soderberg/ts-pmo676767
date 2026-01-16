@@ -93,17 +93,11 @@ public class RoomRenderer : MonoBehaviour
                 TileBase floorTile = floorTilemap.GetTile(cell);
                 if (floorTile != null && !floorTile.name.Contains(tile.category.ToString()))
                 {
-                    Debug.Log(tile.category);
-                    Debug.Log(floorTile);
-                    Debug.Log("FLOOR");
                     return false;
                 }
                 TileBase wallTile = wallTilemap.GetTile(cell);
                 if (wallTile != null && !wallTile.name.Contains(tile.category.ToString()))
                 {
-                    Debug.Log(tile.category);
-                    Debug.Log(wallTile);
-                    Debug.Log("WALL");
                     return false;
                 }
                     
@@ -142,7 +136,6 @@ public class RoomRenderer : MonoBehaviour
             else
                 floorTilemap.SetTile(tile.pos, lookup[(tile.tile, tile.ori)]);
         }
-        // ---------- OBJECTS ----------
         foreach (var spawn in roominst.room.objectSpawns)
         {
             Vector2Int rotated =

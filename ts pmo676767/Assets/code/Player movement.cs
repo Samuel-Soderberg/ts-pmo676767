@@ -1,4 +1,5 @@
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        if (Input.GetKey(KeyCode.A))
+        if (PlayerSettings.Instance.Flashing)
+            ChangeAnimationState("flachlight (fram)");
+        else if (Input.GetKey(KeyCode.A))
         {
             ChangeAnimationState("walk left");
         }
