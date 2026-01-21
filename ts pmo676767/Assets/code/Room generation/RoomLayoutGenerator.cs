@@ -73,7 +73,7 @@ public class RoomLayoutGenerator : MonoBehaviour
         };
         roomRenderer.DrawRoom(starroom);
         doorsopen.Add(new Doorsinworld { Door = starroom.room.doors[0], doorpos = starroom.room.doors[0].position });
-        while (placedroomcount < maxRooms && safety < 1000)
+        while (placedroomcount < maxRooms && safety < 10000)
         {
             if (doorsopen.Count == 0)
             {
@@ -131,7 +131,7 @@ public class RoomLayoutGenerator : MonoBehaviour
                                 }
                             }
                             doorsopen.Remove(currentdoor);
-                            roomPool.Remove(room);
+                           // roomPool.Remove(room);
                             succes = true;
                             break;
                         }

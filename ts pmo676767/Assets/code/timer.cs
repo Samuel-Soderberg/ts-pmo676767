@@ -59,9 +59,21 @@ public class timer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        int bodiesfound2 = 0;
+        Debug.Log("sigma");
         if (collision.gameObject == goal)
         {
-            if (bodiesfound == BodyRegistry.allBodies.Count)
+            Debug.Log("sigma mål");
+            foreach (Body b in BodyRegistry.allBodies)
+            {
+                if (b.photographed)
+                {
+                    bodiesfound2++;
+                }
+            }
+            Debug.Log(bodiesfound2);
+            Debug.Log(BodyRegistry.allBodies.Count);
+            if (bodiesfound2 == BodyRegistry.allBodies.Count)
                 wictory();
         }
     }
